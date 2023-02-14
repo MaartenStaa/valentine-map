@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>Valentine map</title>
+    <style>
+    html, body {
+      font-family: sans-serif;
+      margin: 0; 
+      padding: 0;
+    }
+    * { 
+      box-sizing: border-box;
+    }
+    .map {
+      border: 5px solid black;
+      display: inline-block;
+      position: relative;
+    }
+    .vertical {
+      background: black;
+      display:block;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+    }
+    .horizontal {
+      background: black;
+      display:block;
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+    }
+    .quadrant, .indicators * {
+      align-items: center;
+      background-color: black;
+      box-shadow: inset 0 0 var(--inset-size) white;
+      border-radius: 100%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+    }
+    .quadrant {
+      --inset-size: 20px;
+      font-size: 2rem;
+      height: 100px;
+      padding-top: 6px;
+      width: 100px;
+    }
+    .indicators {
+      counter-reset: poi;
+    }
+    .indicators * {
+      --inset-size: 5px;
+      counter-increment: poi;
+      height: 30px;
+      padding-top: 2px;
+      transform: translate(-50%, -50%);
+      width: 30px;
+    }
+    .indicators *::after {
+      content: counter(poi);
+      display: inline;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="map">
+      <img src="map.png">
+
+      <!-- grid lines -->
+      <div class="horizontal"></div>
+      <div class="vertical"></div>
+
+      <!-- quadrant indicators -->
+      <div class="quadrant" style="left: 2%; top: 2%;">NW</div>
+      <div class="quadrant" style="right: 2%; top: 2%;">NE</div>
+      <div class="quadrant" style="right: 2%; bottom: 2%;">SE</div>
+      <div class="quadrant" style="left: 2%; bottom: 2%;">SW</div>
+
+      <!-- nw -->
+      <div class="indicators">
+        <div style="left: 183px; top: 910px;"></div> <!-- city hall -->
+        <div style="left: 520px; top: 525px;"></div> <!-- unrelated: het gegeven paard -->
+        <div style="left: 76px; top: 210px;"></div> <!-- suspect: hilda kiefer -->
+        <div style="left: 670px; top: 530px;"></div> <!-- shoes -->
+        <div style="left: 846px; top: 808px;"></div> <!-- unrelated: o'panuozzo -->
+        <div style="left: 581px; top: 426px;"></div> <!-- unrelated: spaghetteria -->
+        <div style="left: 469px; top: 283px;"></div> <!-- police -->
+      </div>
+
+      <!-- ne -->
+      <div class="indicators">
+        <div style="left: 1122px; top: 416px;"></div> <!-- unrelated: broodje mario -->
+        <div style="left: 1159px; top: 767px;"></div> <!-- unrelated: dom -->
+        <div style="left: 1047px; top: 304px;"></div> <!-- gall & gall -->
+        <div style="left: 1392px; top: 104px;"></div> <!-- unrelated: yasmina harman -->
+        <div style="left: 920px; top: 462px;"></div> <!-- library -->
+        <div style="left: 1309px; top: 914px;"></div> <!-- suspect: aurelio perugia -->
+        <div style="left: 1665px; top: 248px;"></div> <!-- praxis -->
+        <div style="left: 1537px; top: 605px;"></div> <!-- unrelated: ingeborg walter -->
+      </div>
+
+      <!-- se -->
+      <div class="indicators">
+        <div style="left: 1320px; top: 1632px;"></div> <!-- albert heijn -->
+        <div style="left: 1355px; top: 1145px;"></div> <!-- catharijneconvent museum -->
+        <div style="left: 1143px; top: 1388px;"></div> <!-- unrelated: pia durante -->
+        <div style="left: 1413px; top: 1755px;"></div> <!-- suspect: eleonora ivanov -->
+        <div style="left: 1653px; top: 1170px;"></div> <!-- unrelated: abigayle nisi -->
+        <div style="left: 1376px; top: 1842px;"></div> <!-- unrelated: pathe -->
+        <div style="left: 1750px; top: 1410px;"></div> <!-- unrelated: sonnenborgh -->
+      </div>
+
+      <!-- sw -->
+      <div class="indicators">
+        <div style="left: 124px; top: 1066px;"></div> <!-- unrelated: beatrixtheater -->
+        <div style="left: 388px; top: 1583px;"></div> <!-- suspect: andres ekstrom -->
+        <div style="left: 837px; top: 1470px;"></div> <!-- suspect: bennett jeffries -->
+        <div style="left: 331px; top: 1715px;"></div> <!-- unrelated: stephan koens -->
+        <div style="left: 716px; top: 1162px;"></div> <!-- unrelated: prorail -->
+        <div style="left: 197px; top: 1569px;"></div> <!-- unrelated: verstand -->
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      const map = document.getElementsByClassName('map')[0]
+      if (map) {
+        map.addEventListener('click', (e) => {
+          console.log(`<div style="left: ${e.pageX}px; top: ${e.pageY}px;"></div>`)
+        })
+      }
+    </script>
+  </body>
+</html>
